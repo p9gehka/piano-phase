@@ -52,20 +52,18 @@ document.getElementById('bang').addEventListener('click',
 				if (lineShiftTgl && line2.join() === line2_.join()) {
 					countedOffsets += fin
 					lineShiftTgl = false;
-					
-
 					if (type === 0) {
 						line1 = [...composition2]
 						line2 = [...composition3]
+						fin = 512
 					}
 					if (type === 1) {
 						line1 = [...composition4]
 						line2 = [...composition4]
-						fin = 512
+						fin = 128
 					}
 					if (type === 2) {
 						clearInterval(intervalId)
-						fin = 128
 					}
 					type++;
 					line2_ = [...line2]
@@ -110,8 +108,8 @@ document.getElementById('bang').addEventListener('click',
 					tick++;
 					offsetTick = hold === 0 ? offsetTick + 1 : offsetTick;
 					hold = hold === 0 ? 0 : hold - 1;
-					console.log(offsetTick)
-					draw(type, ((offsetTick - countedOffsets) / fin) * 100 )
+					console.log(offsetTick - countedOffsets, fin)
+					draw(type, ((offsetTick - countedOffsets) / fin) * 100)
 				}
 			},
 			160 / microTickRate,
