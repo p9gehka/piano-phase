@@ -1,11 +1,11 @@
-export class Key {
+export class Piano {
 	constructor(context, pan) {
 		this.context = context;
 		this.gainNode = context.createGain();
 		this.gainNode.gain.setValueAtTime(0, context.currentTime);
 		this.delayNode = context.createDelay();
 		this.panNode = this.context.createStereoPanner();
-		this.panNode.pan.setValueAtTime(pan, context.currentTime)
+		this.panNode.pan.setValueAtTime(pan, context.currentTime);
 	}
 
 	async connect(dest) {
@@ -13,6 +13,7 @@ export class Key {
 		this.noiseGenerator = new AudioWorkletNode(this.context, 'small-noise');
 		const splitterNode = this.context.createChannelSplitter();
 		const mergerNode = this.context.createChannelMerger();
+
 		const filter1 = this.context.createBiquadFilter();
 		const filter2 = this.context.createBiquadFilter();
 		const filter3 = this.context.createBiquadFilter();
@@ -29,16 +30,16 @@ export class Key {
 
 
 		this.noiseGenerator.connect(filter1);
-		filter1.connect(filter2)
-		filter2.connect(filter3)
-		filter3.connect(filter4)
-		filter4.connect(mergerNode)
+		filter1.connect(filter2);
+		filter2.connect(filter3);
+		filter3.connect(filter4);
+		filter4.connect(mergerNode);
 		mergerNode.connect(this.delayNode);
 		this.delayNode.connect(splitterNode);
 		splitterNode.connect(this.gainNode);
 		this.gainNode.connect(mergerNode);
 		splitterNode.connect(this.panNode);
-		this.panNode.connect(dest)
+		this.panNode.connect(dest);
 	}
 
 	play(pitch, duration) {

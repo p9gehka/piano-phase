@@ -14,6 +14,31 @@ canvas {
 }
 
 .controls {
-	position: relative;
+	position: fixed;
+	top: 0; right: 0; left: 0; bottom: 0;
 	z-index: 1;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+button {
+	border: 1px solid transparent;
+	background: white;
+	border-radius: 30px;
+	color: black;
+	font-size: 21px;
+	cursor: pointer;
+	font-weight: 100;
+	padding: 10px 30px;
+	text-transform: uppercase;
+}
+
+button:hover {
+	border-color: white;
+	background: black;
+	color: white;
+}
+.hide {
+	display: none;
 }
