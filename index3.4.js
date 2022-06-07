@@ -19,7 +19,7 @@ async function start() {
 	let microTickOffset = 0;
 	let hold = 2;
 
-	const ctx = new AudioContext();
+	const ctx = new AudioContext({ sampleRate: 44100 });
 	const piano1 = [new Piano(ctx, -0.5), new Piano(ctx, -0.5)];
 	const piano2 = [new Piano(ctx, 0.5), new Piano(ctx, 0.5)];
 	const comperessorNode = ctx.createDynamicsCompressor();
